@@ -1,0 +1,263 @@
+
+
+body {
+  padding: 0;
+  font-family: "Lato", sans-serif;
+  overflow-x:hidden;
+}
+.navbar{
+  background-color:#EF5350;
+  margin:0;
+  border-radius: 0;
+  border:none;
+  padding:0 10px;
+  box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.19);
+}
+.navbar-default .navbar-brand, .navbar-default .navbar-nav > li > a{
+  color:white;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
+  background:#ECEFF1;
+  color:#212121;
+  padding: 5px;
+  margin-top: 10px;
+  border-radius: 3px;
+}
+map{
+  overflow: hidden;
+  display: block;
+  width:100%;
+  height:calc(100vh - 50px);
+}
+.container-fluid{
+  padding:0;
+}
+.sidectrl{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  height:calc(100vh - 50px);
+  background:#ECEFF1;
+  overflow-y:auto;
+  z-index:2;
+  position:relative;
+}
+.sidectrl h2, .timelinectrl h2 {
+  font-weight:900;
+}
+.timelinectrl{
+  width:calc(100% - 30px);
+  height:25vh;
+  position:absolute;
+  bottom:0;
+  background:#ECEFF1;
+  border-radius:3px;
+  padding:0 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.country-lst .row{
+  clear:both;
+  padding-left:5%;
+  padding-right:5%;
+  transition: all 0.5s ease;
+  cursor:pointer;
+  position:relative;
+}
+
+.country-lst .row:nth-child(odd){
+  background-color: #ECEFF1;
+}
+.country-lst .row:nth-child(even){
+  background-color: #CFD8DC;
+}
+.sep{
+  height:4px;
+  width:90%;
+  margin:0 auto;
+  border-bottom:1px solid #CFD8DC;
+}
+.country-ttl{
+  font-size:1.4em;
+  float:left;
+}
+.country-collapse{
+  margin-top:5px;
+}
+.country-head{
+  margin:10px auto 5px auto;
+  overflow:hidden;
+  width:90%;
+  cursor:pointer;
+}
+.country-collapse{
+  font-size:1.3em;
+}
+.table-head{
+  width:90%;
+  margin:15px auto;
+  font-size:0.7em;
+  color:#979899;
+
+}
+.table-head.row .cell{
+  padding:0 5px 0 5px;
+  border-right:1px solid #979899;
+}
+.sidectrl h2{
+  padding-left:5%;
+  margin-bottom:15px;
+}
+.country-list{
+  position: absolute;
+  background:#ECEFF1;
+}
+.country-select{
+  float:left;
+}
+.timelinectrl h2{
+  display:inline-block;
+  float:left;
+}
+
+.country-select span:not(.fa){
+  font-size:1.5em;
+  border-bottom:2px solid black;
+  margin-top:23px;
+  display: inline-block;
+  margin-left:15px;
+}
+.country-select span.fa{
+  display:inline-block;
+  margin-left:10px;
+}
+
+.country-list{
+  height:13vh;
+  overflow-y:auto;
+}
+.country-item{
+  padding-left:10px;
+  padding-top:3px;
+}
+timeline, seiztimeline{
+  display:block;
+  width:100%;
+  height:100%;
+}
+timeline .axis, seiztimeline .axis {
+  font: 10px "Lato", sans-serif;
+}
+timeline .domain, seiztimeline .domain{
+  display:none;
+}
+timeline .axis text, seiztimeline .axis text{
+  fill:#A4B3BC;
+}
+timeline .axis path,
+timeline .axis line,seiztimeline .axis path,
+seiztimeline .axis line {
+  fill: none;
+  stroke: #A4B3BC;
+  shape-rendering: crispEdges;
+}
+
+timeline .axis--x path, seiztimeline .axis--x path {
+  display: none;
+}
+
+timeline .line, seiztimeline .line {
+  fill: none;
+  stroke: #EF5350;
+  stroke-width: 3px;
+}
+.crime{
+  height:calc(100vh - 50px);
+  position:absolute;
+  top:50px;
+  z-index:1;
+  right:-10%;
+  background:#ECEFF1;
+  transition:all 1s ease;
+  padding:15px 30px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+.info-place{
+  font-size:1.3em;
+}
+
+.crime-sep{
+  height:10px;
+
+  width:100%;
+  margin:0 auto 10px auto;
+  border-bottom:1px solid #CFD8DC;
+}
+.crime-box{
+  overflow:hidden;
+}
+.crime-50{
+  width:49%;
+  float:left;
+}
+.crime-40{
+  width:40%;
+  float:left;
+}
+.crime-30{
+  width:29%;
+  float:left;
+
+}
+.crime-head{
+  font-size:0.7em;
+  color:#979899;
+}
+.thick{
+  border-width: 2px;
+  border-color: #adb5b8;
+}
+
+.opaque{
+  opacity:0.4;
+}
+.crime-link{
+  position:absolute;
+  left:15px;
+  top:6px;
+  font-size:0.7em !important;
+}
+.ng-modal{
+  position: absolute;
+  top: 0;
+  left: calc(50% - 200px);
+  top:30vh;
+  height: auto;
+  index: 9;
+  z-index: 999;
+  background:#ECEFF1;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding:10px;
+}
+
+.ng-modal div{
+  width:100%;
+  margin-bottom:10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+
+.dial-back{
+  background:rgba(0,0,0,0.5);
+  width:100vw;
+  height:100vh;
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:999;
+}
+
+.ng-modal-close{
+  cursor:pointer;
+}

@@ -21,7 +21,7 @@ angular.module('fireInterfaceApp')
     $scope.seizByCity = cfshoot.dimension(function(d) { return d["Seizure_ci"]; });
     $scope.seizByNUTS = cfshoot.dimension(function(d) { return d["NUTS_ID"]; });
 
-    $scope.countries = _.uniq(_.map($scope.shootings, "Country"));
+    $scope.countries = _.uniq(_.map($scope.seizures, "Country"));
     $scope.countries.unshift("All Countries");
     $scope.selected = $scope.countries[0];
     $scope.clicked = false;
@@ -84,9 +84,9 @@ angular.module('fireInterfaceApp')
       $scope.links = links.split(";")
       $scope.modalShown = !$scope.modalShown;
     };
-    
-    
-    
+
+
+
   });
 
 

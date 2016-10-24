@@ -23,7 +23,7 @@ body {
   margin-top: 10px;
   border-radius: 3px;
 }
-map{
+map,seizmap{
   overflow: hidden;
   display: block;
   width:100%;

@@ -12,7 +12,7 @@ angular.module('fireInterfaceApp')
     $scope.seizures = d3.tsvParse(seizures);
     $scope.links = [];
 
-    console.log($scope.seizures);
+    // console.log($scope.seizures);
 
     var cfshoot = crossfilter($scope.seizures);
     $scope.seizById = cfshoot.dimension(function(d) { return d.Crime_ID; });

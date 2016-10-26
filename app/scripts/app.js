@@ -19,12 +19,7 @@ angular
   ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
-      })
-      .when('/', {
+      .when('/shootings', {
         templateUrl: 'views/shootings.html',
         controller: 'ShootingsCtrl',
         controllerAs: 'shootings',
@@ -45,6 +40,6 @@ angular
         }
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/shootings'
       });
   });

@@ -13,6 +13,7 @@ angular.module('fireInterfaceApp')
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
 
+        console.log('seizmap')
 
         var aggregation = scope.seizByNUTS;
         var zoomlvl = 1 << 12;

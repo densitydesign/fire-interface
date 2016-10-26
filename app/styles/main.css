@@ -2,19 +2,51 @@
 
 body {
   padding: 0;
-  font-family: "Lato", sans-serif;
-  overflow-x:hidden;
+  /*font-family: "Lato", sans-serif;*/
+  /*font-family: 'Raleway',sans-serif;*/
+
+  font-family: 'Work Sans', sans-serif;
+  font-size: 12px;
+  line-height: normal;
+  color: #8d8d8d;
+  font-weight: 400;
+  background-color: #f5f5f5;
+  
+  overflow-x: hidden!important;
+  -webkit-font-smoothing: antialiased;
+
+  overflow-y: hidden;
+  height: 100vh;
+
 }
+
+body {
+
+}
+
 .navbar{
-  background-color:#EF5350;
+  background: #BA5D4A;
   margin:0;
   border-radius: 0;
   border:none;
   padding:0 10px;
   box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.19);
 }
+
+.navbar-brand {
+  padding: 8px 15px;
+}
+
+.navbar-brand > img {
+    height: 34px;
+}
+
 .navbar-default .navbar-brand, .navbar-default .navbar-nav > li > a{
-  color:white;
+  /* Seizures: */
+  font-size: 12px;
+  color: #F1F1F2;
+  letter-spacing: 3px;
+  text-transform: uppercase;
 }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
   background:#ECEFF1;
@@ -41,7 +73,10 @@ map,seizmap{
   position:relative;
 }
 .sidectrl h2, .timelinectrl h2 {
-  font-weight:900;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 20px;
+  letter-spacing: 2px;
 }
 .timelinectrl{
   width:calc(100% - 30px);
@@ -75,9 +110,12 @@ map,seizmap{
   margin:0 auto;
   border-bottom:1px solid #CFD8DC;
 }
-.country-ttl{
-  font-size:1.4em;
-  float:left;
+.country-ttl {
+    font-size: 14px;
+    float: left;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
 }
 .country-collapse{
   margin-top:5px;
@@ -94,7 +132,7 @@ map,seizmap{
 .table-head{
   width:90%;
   margin:15px auto;
-  font-size:0.7em;
+  font-size:1em;
   color:#979899;
 
 }
@@ -102,6 +140,12 @@ map,seizmap{
   padding:0 5px 0 5px;
   border-right:1px solid #979899;
 }
+
+.cell.col-md-4 {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
 .sidectrl h2{
   padding-left:5%;
   margin-bottom:15px;
@@ -118,12 +162,15 @@ map,seizmap{
   float:left;
 }
 
-.country-select span:not(.fa){
-  font-size:1.5em;
-  border-bottom:2px solid black;
-  margin-top:23px;
-  display: inline-block;
-  margin-left:15px;
+.country-select span:not(.fa) {
+    font-size: 1.1em;
+    border-bottom: 2px solid black;
+    margin-top: 24px;
+    display: inline-block;
+    margin-left: 15px;
+    cursor: pointer;
+    font-weight: 500;
+    text-transform: uppercase;
 }
 .country-select span.fa{
   display:inline-block;
@@ -150,7 +197,7 @@ timeline .domain, seiztimeline .domain{
   display:none;
 }
 timeline .axis text, seiztimeline .axis text{
-  fill:#A4B3BC;
+  fill:#52646f;
 }
 timeline .axis path,
 timeline .axis line,seiztimeline .axis path,

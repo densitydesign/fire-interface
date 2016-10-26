@@ -9,18 +9,14 @@
 angular.module('fireInterfaceApp')
   .directive('map', function () {
     return {
-      template: '<svg></svg>',
+      template: '<svg id="map"></svg>',
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
-
-        console.log('map')
 
         var aggregation = scope.shootByNUTS;
         var zoomlvl = 1 << 12;
 
-
         getData();
-
 
         var xscale = d3.scaleSqrt()
           .range([2, 15])
@@ -52,7 +48,7 @@ angular.module('fireInterfaceApp')
           .scaleExtent([1 << 12, 1 << 16])
           .on("zoom", zoomed);
 
-        var svg = d3.select("svg")
+        var svg = d3.select("#map")
           .attr("width", width)
           .attr("height", height);
 
@@ -154,8 +150,6 @@ angular.module('fireInterfaceApp')
 
         function getData() {
 
-          console.log('getData')
-
           scope.cityByCount = aggregation.group().reduce(
 
             function(a, d) {
@@ -183,7 +177,6 @@ angular.module('fireInterfaceApp')
         }
 
         function drawMap() {
-          console.log('draw map')
           var data = _.map(scope.cityByCount,"value").filter(function(d){return d.count > 0});
 
           var circles = svg.selectAll(".city").data(data,function(d){return d.key})

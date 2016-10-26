@@ -9,11 +9,9 @@
 angular.module('fireInterfaceApp')
   .directive('seizmap', function () {
     return {
-      template: '<svg></svg>',
+      template: '<svg id="seizmap"></svg>',
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
-
-        console.log('seizmap')
 
         var aggregation = scope.seizByNUTS;
         var zoomlvl = 1 << 12;
@@ -52,7 +50,7 @@ angular.module('fireInterfaceApp')
           .scaleExtent([1 << 12, 1 << 16])
           .on("zoom", zoomed);
 
-        var svg = d3.select("svg")
+        var svg = d3.select("#seizmap")
           .attr("width", width)
           .attr("height", height);
 

@@ -8,7 +8,7 @@ body {
   font-family: 'Work Sans', sans-serif;
   font-size: 12px;
   line-height: normal;
-  color: #8d8d8d;
+  color: #333;
   font-weight: 400;
   background-color: #f5f5f5;
   
@@ -74,9 +74,8 @@ map,seizmap{
 }
 .sidectrl h2, .timelinectrl h2 {
   font-weight: 700;
-  text-transform: uppercase;
   font-size: 20px;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 }
 .timelinectrl{
   width:calc(100% - 30px);
@@ -101,7 +100,7 @@ map,seizmap{
 .country-lst .row:nth-child(odd){
   background-color: #ECEFF1;
 }
-.country-lst .row:nth-child(even){
+.country-lst .row:nth-child(odd){
   background-color: #CFD8DC;
 }
 .sep{
@@ -130,15 +129,18 @@ map,seizmap{
   font-size:1.3em;
 }
 .table-head{
-  width:90%;
-  margin:15px auto;
+  /*margin:15px auto;*/
   font-size:1em;
-  color:#979899;
+  font-weight: 600;
+  margin-bottom: 5px;
+  margin-top:10px;
 
 }
 .table-head.row .cell{
-  padding:0 5px 0 5px;
-  border-right:1px solid #979899;
+  /*padding:0 5px 0 5px;*/
+  /*border-bottom:1px solid #979899;*/
+  padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .cell.col-md-4 {
@@ -164,7 +166,7 @@ map,seizmap{
 
 .country-select span:not(.fa) {
     font-size: 1.1em;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #595959;
     margin-top: 24px;
     display: inline-block;
     margin-left: 15px;
@@ -182,9 +184,19 @@ map,seizmap{
   overflow-y:auto;
 }
 .country-item{
-  padding-left:10px;
-  padding-top:3px;
+  margin-left: 10px;
+    margin-right: 10px;
+    padding-top: 4px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    display: inline;
+    float: left;
+    clear: both;
 }
+.country-item:hover {
+  border-bottom-color: #8d8d8d;
+}
+
 timeline, seiztimeline{
   display:block;
   width:100%;

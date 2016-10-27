@@ -1,234 +1,171 @@
 <div clss="row">
-  <div class="col-md-8" style="padding:0; position:relative">
-    <map></map>
-    <div class="timelinectrl">
-      <h2>Timeline</h2>
-      <div ng-click="ctrsOpen = !ctrsOpen" class="country-select">
-        <span>{{selected}}</span><span class="fa fa-chevron-down"></span>
-        <div ng-show="ctrsOpen" class="country-list">
-          <div class="country-item" ng-click="setCountry(c)"  ng-repeat="c in countries" >{{c}}</div>
+    <div class="col-md-8" style="padding:0; position:relative">
+        <map></map>
+        <div class="timelinectrl">
+            <h2>Timeline</h2>
+            <div ng-click="ctrsOpen = !ctrsOpen" class="country-select">
+                <span>{{selected}}</span><span class="fa fa-chevron-down"></span>
+                <div ng-show="ctrsOpen" class="country-list">
+                    <div class="country-item" ng-click="setCountry(c)" ng-repeat="c in countries">{{c}}</div>
+                </div>
+            </div>
+            <timeline></timeline>
         </div>
-      </div>
-      <timeline></timeline>
-
     </div>
-  </div>
-  <div class="col-md-4 sidectrl">
-
-    <h2>Shootings list</h2>
-    <crimelist></crimelist>
-
-  </div>
-
-  <div ng-style="{'right': crime ? '33%' : '-10%'}" class="col-md-3 crime">
-
-    <div ng-click="crime = null">close <span class="fa fa-times"></span></div>
-    <div class="crime-sep thick"></div>
-    <div class="crime-box">
-      <div class="info-place pull-left">{{crime['Event_city']}}</div>
-      <div class="info-place pull-right">{{crime['Event Date'] | date:"dd/MM/yyyy"}}</div>
+    <div class="col-md-4 sidectrl">
+        <h2>Shootings list</h2>
+        <crimelist></crimelist>
     </div>
-
-    <div class="crime-sep"></div>
-
-    <div class="crime-box">
-      <div class="crime-50">
-        <div>Intentional</div>
-        <div>{{crime.Intentiona}}</div>
-      </div>
-
-      <div class="crime-50">
-        <div class="pull-right">
-          <div>Motivation</div>
-          <div>{{crime.Motivation}}</div>
+    <div ng-style="{'right': crime ? '33%' : '-10%'}" class="col-md-3 crime">
+        <div ng-click="crime = null">close <span class="fa fa-times"></span></div>
+        <div class="crime-sep thick"></div>
+        <div class="crime-box">
+            <div class="crime-50">
+                <div class="info-place pull-left">{{crime['Event_city']}}</div>
+            </div>
+            <div class="crime-50">
+                <div class="info-place pull-right">{{crime['Event Date'] | date:"dd/MM/yyyy"}}</div>
+            </div>
         </div>
-
-      </div>
-    </div>
-
-    <div class="crime-sep thick"></div>
-
-
-    <div class="crime-box">
-      <div class="crime-40">
-        <div class="pull-left"><b>Shooters</b></div>
-        <div class="pull-right">{{crime['N. of shoo'] | mynumber:0}}</div>
-      </div>
-
-      <div class="crime-40 pull-right">
-        <div>
-          <div class="pull-left"><b>Arrested</b></div>
-          <div class="pull-right">{{crime['N. of sh_1'] | mynumber:0}}</div>
+        <div class="crime-sep"></div>
+        <div class="crime-box">
+            <div class="crime-50">
+                <div><b>Intentional</b></div>
+                <div>{{crime.Intentiona}}</div>
+            </div>
+            <div class="crime-50">
+                <div class="pull-right">
+                    <div><b>Motivation</b></div>
+                    <div>{{crime.Motivation}}</div>
+                </div>
+            </div>
         </div>
-
-      </div>
-
-    </div>
-
-    <div ng-if="crime['N. of shoo'] && crime['N. of shoo']!='N/A' && !isNaN(crime['N. of shoo']) && crime['N. of shoo']!='0.0'" class="crime-sep"></div>
-
-    <div ng-if="crime['N. of shoo'] && crime['N. of shoo']!='N/A' && !isNaN(crime['N. of shoo']) && crime['N. of shoo']!='0.0'" class="crime-box">
-      <div class="crime-head">
-        <div class="crime-30">nationality</div>
-        <div class="crime-30">gender</div>
-        <div class="crime-30">age</div>
-
-      </div>
-
-      <div class="crime-30">
-        <div ng-repeat="n in shootersnat track by $index">{{n}}</div>
-      </div>
-
-      <div class="crime-30">
-        <div ng-repeat="g in shooterssex track by $index">
-          <div>
-            <span class="fa fa-male" ng-if="g=='M'"></span>
-            <span class="fa fa-female" ng-if="g=='F'"></span>
-            <span ng-if="g!='F' && g!='M'">N/A</span>
-          </div>
+        <div class="crime-sep thick"></div>
+        <div class="crime-box">
+            <div class="crime-40">
+                <div class="pull-left"><b>Shooters</b></div>
+                <div class="pull-right">{{crime['N. of shoo'] | mynumber:0}}</div>
+            </div>
+            <div class="crime-40 pull-right">
+                <div>
+                    <div class="pull-left"><b>Arrested</b></div>
+                    <div class="pull-right">{{crime['N. of sh_1'] | mynumber:0}}</div>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <div class="crime-30">
-        <div ng-repeat="a in shootersage track by $index">{{a |mynumber:0}}</div>
-      </div>
-
-
-    </div>
-
-    <div class="crime-sep thick"></div>
-
-
-    <div class="crime-box">
-      <div class="crime-40">
-        <div class="pull-left"><b>Injured</b></div>
-        <div class="pull-right">{{crime['N. of inju'] | mynumber:0}}</div>
-      </div>
-
-    </div>
-
-    <div ng-if="crime['N. of inju'] && crime['N. of inju']!='N/A' && !isNaN(crime['N. of inju']) && crime['N. of inju']!='0.0'" class="crime-sep"></div>
-
-
-    <div ng-if="crime['N. of inju'] && crime['N. of inju']!='N/A' && !isNaN(crime['N. of inju']) && crime['N. of inju']!='0.0'" class="crime-box">
-      <div class="crime-head">
-        <div class="crime-30">nationality</div>
-        <div class="crime-30">gender</div>
-        <div class="crime-30">age</div>
-
-      </div>
-
-      <div class="crime-30">
-        <div ng-repeat="n in injunat track by $index">{{n}}</div>
-      </div>
-
-      <div class="crime-30">
-        <div ng-repeat="g in injusex track by $index">
-          <div>
-            <span class="fa fa-male" ng-if="g=='M'"></span>
-            <span class="fa fa-female" ng-if="g=='F'"></span>
-            <span ng-if="g!='F' && g!='M'">N/A</span>
-          </div>
+        <div ng-if="crime['N. of shoo'] && crime['N. of shoo']!='N/A' && !isNaN(crime['N. of shoo']) && crime['N. of shoo']!='0.0'" class="crime-sep"></div>
+        <div ng-if="crime['N. of shoo'] && crime['N. of shoo']!='N/A' && !isNaN(crime['N. of shoo']) && crime['N. of shoo']!='0.0'" class="crime-box">
+            <div class="crime-head">
+                <div class="crime-40">Nationality</div>
+                <div class="crime-30">Gender</div>
+                <div class="crime-30">Age</div>
+            </div>
+            <div class="crime-40">
+                <div ng-repeat="n in shootersnat track by $index">{{n}}</div>
+            </div>
+            <div class="crime-30">
+                <div ng-repeat="g in shooterssex track by $index">
+                    <div>
+                        <span class="fa fa-male" ng-if="g=='M'"></span>
+                        <span class="fa fa-female" ng-if="g=='F'"></span>
+                        <span ng-if="g!='F' && g!='M'">N/A</span>
+                    </div>
+                </div>
+            </div>
+            <div class="crime-30">
+                <div ng-repeat="a in shootersage track by $index">{{a |mynumber:0}}</div>
+            </div>
         </div>
-      </div>
-
-      <div class="crime-30">
-        <div ng-repeat="a in injuage track by $index">{{a |mynumber:0}}</div>
-      </div>
-
-
-    </div>
-
-    <div class="crime-sep thick"></div>
-
-
-
-    <div class="crime-box">
-      <div class="crime-40">
-        <div class="pull-left"><b>Victims</b></div>
-        <div class="pull-right">{{crime['N. of vict'] | mynumber:0}}</div>
-      </div>
-
-    </div>
-
-    <div ng-if="crime['N. of vict'] && crime['N. of vict']!='N/A' && !isNaN(crime['N. of vict']) && crime['N. of vict']!='0.0'" class="crime-sep"></div>
-
-
-    <div ng-if="crime['N. of vict'] && crime['N. of vict']!='N/A' && !isNaN(crime['N. of vict']) && crime['N. of vict']!='0.0'" class="crime-box">
-      <div class="crime-head">
-        <div class="crime-30">nationality</div>
-        <div class="crime-30">gender</div>
-        <div class="crime-30">age</div>
-
-      </div>
-
-      <div class="crime-30">
-        <div ng-repeat="n in victnat track by $index">{{n}}</div>
-      </div>
-
-      <div class="crime-30">
-        <div ng-repeat="g in victsex track by $index">
-          <div>
-            <span class="fa fa-male" ng-if="g=='M'"></span>
-            <span class="fa fa-female" ng-if="g=='F'"></span>
-            <span ng-if="g!='F' && g!='M'">N/A</span>
-          </div>
+        <div class="crime-sep thick"></div>
+        <div class="crime-box">
+            <div class="crime-40">
+                <div class="pull-left"><b>Injured</b></div>
+                <div class="pull-right">{{crime['N. of inju'] | mynumber:0}}</div>
+            </div>
         </div>
-      </div>
-
-      <div class="crime-30">
-        <div ng-repeat="a in victage track by $index">{{a |mynumber:0}}</div>
-      </div>
-
-
-    </div>
-
-    <div class="crime-sep thick"></div>
-
-
-    <div class="crime-box">
-      <div class="crime-40">
-        <div class="pull-left"><b>Firearms</b></div>
-        <div class="pull-right">{{crime['N. of fire'] | mynumber:0}}</div>
-      </div>
-
-    </div>
-
-    <div ng-if="crime['N. of fire'] && crime['N. of fire']!='N/A' && !isNaN(crime['N. of fire']) && crime['N. of fire']!='0.0'" class="crime-sep"></div>
-
-
-    <div ng-if="crime['N. of fire'] && crime['N. of fire']!='N/A' && !isNaN(crime['N. of fire']) && crime['N. of fire']!='0.0'" class="crime-box">
-      <div class="crime-head">
-        <div class="crime-30">type</div>
-        <div class="crime-30">possession</div>
-        <div class="crime-30">seized</div>
-
-      </div>
-
-      <div class="crime-30">
-        <div ng-repeat="n in weptype track by $index">{{n}}</div>
-      </div>
-
-      <div class="crime-30">
-        <div ng-repeat="g in wepposs track by $index">
-          <div>{{g}}</div>
+        <div ng-if="crime['N. of inju'] && crime['N. of inju']!='N/A' && !isNaN(crime['N. of inju']) && crime['N. of inju']!='0.0'" class="crime-sep"></div>
+        <div ng-if="crime['N. of inju'] && crime['N. of inju']!='N/A' && !isNaN(crime['N. of inju']) && crime['N. of inju']!='0.0'" class="crime-box">
+            <div class="crime-head">
+                <div class="crime-40">Nationality</div>
+                <div class="crime-30">Gender</div>
+                <div class="crime-30">Age</div>
+            </div>
+            <div class="crime-40">
+                <div ng-repeat="n in injunat track by $index">{{n}}</div>
+            </div>
+            <div class="crime-30">
+                <div ng-repeat="g in injusex track by $index">
+                    <div>
+                        <span class="fa fa-male" ng-if="g=='M'"></span>
+                        <span class="fa fa-female" ng-if="g=='F'"></span>
+                        <span ng-if="g!='F' && g!='M'">N/A</span>
+                    </div>
+                </div>
+            </div>
+            <div class="crime-30">
+                <div ng-repeat="a in injuage track by $index">{{a |mynumber:0}}</div>
+            </div>
         </div>
-      </div>
-
-      <div class="crime-30">
-        <div ng-repeat="a in wepseiz track by $index">{{a}}</div>
-      </div>
-
-
+        <div class="crime-sep thick"></div>
+        <div class="crime-box">
+            <div class="crime-40">
+                <div class="pull-left"><b>Victims</b></div>
+                <div class="pull-right">{{crime['N. of vict'] | mynumber:0}}</div>
+            </div>
+        </div>
+        <div ng-if="crime['N. of vict'] && crime['N. of vict']!='N/A' && !isNaN(crime['N. of vict']) && crime['N. of vict']!='0.0'" class="crime-sep"></div>
+        <div ng-if="crime['N. of vict'] && crime['N. of vict']!='N/A' && !isNaN(crime['N. of vict']) && crime['N. of vict']!='0.0'" class="crime-box">
+            <div class="crime-head">
+                <div class="crime-40">Nationality</div>
+                <div class="crime-30">Gender</div>
+                <div class="crime-30">Age</div>
+            </div>
+            <div class="crime-40">
+                <div ng-repeat="n in victnat track by $index">{{n}}</div>
+            </div>
+            <div class="crime-30">
+                <div ng-repeat="g in victsex track by $index">
+                    <div>
+                        <span class="fa fa-male" ng-if="g=='M'"></span>
+                        <span class="fa fa-female" ng-if="g=='F'"></span>
+                        <span ng-if="g!='F' && g!='M'">N/A</span>
+                    </div>
+                </div>
+            </div>
+            <div class="crime-30">
+                <div ng-repeat="a in victage track by $index">{{a |mynumber:0}}</div>
+            </div>
+        </div>
+        <div class="crime-sep thick"></div>
+        <div class="crime-box">
+            <div class="crime-40">
+                <div class="pull-left"><b>Firearms</b></div>
+                <div class="pull-right">{{crime['N. of fire'] | mynumber:0}}</div>
+            </div>
+        </div>
+        <div ng-if="crime['N. of fire'] && crime['N. of fire']!='N/A' && !isNaN(crime['N. of fire']) && crime['N. of fire']!='0.0'" class="crime-sep"></div>
+        <div ng-if="crime['N. of fire'] && crime['N. of fire']!='N/A' && !isNaN(crime['N. of fire']) && crime['N. of fire']!='0.0'" class="crime-box">
+            <div class="crime-head">
+                <div class="crime-40">Type</div>
+                <div class="crime-30">Possession</div>
+                <div class="crime-30">Seized</div>
+            </div>
+            <div class="crime-40">
+                <div ng-repeat="n in weptype track by $index">{{n}}</div>
+            </div>
+            <div class="crime-30">
+                <div ng-repeat="g in wepposs track by $index">
+                    <div>{{g}}</div>
+                </div>
+            </div>
+            <div class="crime-30">
+                <div ng-repeat="a in wepseiz track by $index">{{a}}</div>
+            </div>
+        </div>
+        <div class="crime-sep thick"></div>
     </div>
-
-    <div class="crime-sep thick"></div>
-
-
-
-  </div>
-
-  <modal-dialog ng-show='modalShown' info='modalShown' links="links" show='modalShown' width='400px' height='auto'>
-    <p>Modal Content Goes here<p>
-  </modal-dialog>
+    <modal-dialog ng-show='modalShown' info='modalShown' links="links" show='modalShown' width='400px' height='auto'>
+        <p>Modal Content Goes here
+            <p>
+    </modal-dialog>
 </div>

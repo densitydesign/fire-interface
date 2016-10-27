@@ -273,7 +273,10 @@ timeline .line, seiztimeline .line {
 .crime-30{
   width:30%;
   float:left;
-
+}
+.crime-20{
+  width:30%;
+  float:left;
 }
 .crime-head{
   font-size:0.7em;

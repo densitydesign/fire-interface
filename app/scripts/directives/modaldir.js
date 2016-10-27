@@ -25,7 +25,7 @@ angular.module('fireInterfaceApp')
         };
 
         scope.$watch("links",function(n,o){
-          console.log("new links", n);
+          // console.log("new links", n);
         })
 
       },

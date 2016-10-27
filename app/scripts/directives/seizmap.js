@@ -204,9 +204,7 @@ angular.module('fireInterfaceApp')
             .style("fill",function(d){return colscale(d.seized)})
             .style("opacity",0.9)
             .on("click", function(d){
-              console.log(d);
               scope.$emit("click", d["Country"], d.ids);
-
             });
 
 

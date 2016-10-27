@@ -6,17 +6,17 @@
 
   <div class="table-head row" ng-if="collapsed" >
     <div class="cell col-md-4">City</div>
-    <div class="cell col-md-4" >Type</div>
-    <div class="cell col-md-2 text-right">Victims</div>
-    <div class="cell col-md-2 text-right">Injured</div>
+    <div class="cell col-md-4">Storage</div>
+    <div class="cell col-md-2 text-right" >Amount</div>
+    <div class="cell col-md-2 text-right">Actors</div>
   </div>
 
   <div ng-class="{'opaque':crime && crime.Crime_ID != v.Crime_ID}"  ng-if="collapsed" class="row" ng-repeat="v in c.value track by v.Crime_ID">
     <span ng-click="toggleModal(v.Link)" class="crime-link fa fa-link"></span>
     <div ng-click="setCrime(v)" class="cell col-md-4">{{v['Seizure_ci']}}</div>
-    <div ng-click="setCrime(v)" class="cell col-md-4" >{{v['Shooting/h']}}</div>
-    <div ng-click="setCrime(v)" class="cell col-md-2 text-right">{{v['N. of acto'] | mynumber}}</div>
+    <div ng-click="setCrime(v)" class="cell col-md-4">{{v['Storage']}}</div>
     <div ng-click="setCrime(v)" class="cell col-md-2 text-right">{{v['N. of fire'] | mynumber}}</div>
+    <div ng-click="setCrime(v)" class="cell col-md-2 text-right">{{v['N. of acto'] | mynumber}}</div>
   </div>
   <div class="sep"></div>
 </div>
@@ -26,9 +26,9 @@
   <div  ng-class="{'opaque':crime && crime.Crime_ID != v.Crime_ID}" ng-if="!collapsed" class="row" ng-repeat="v in c.value track by v.Crime_ID">
     <span ng-click="toggleModal(v.Link)" class="crime-link fa fa-link"></span>
     <div ng-click="setCrime(v)" class="cell col-md-4">{{v['Seizure_ci']}}</div>
-    <div ng-click="setCrime(v)" class="cell col-md-4" >{{v['Shooting/h']}}</div>
-    <div ng-click="setCrime(v)" class="cell col-md-2 text-right">{{v['N. of acto'] | mynumber}}</div>
+    <div ng-click="setCrime(v)" class="cell col-md-4">{{v['Storage']}}</div>
     <div ng-click="setCrime(v)" class="cell col-md-2 text-right">{{v['N. of fire'] | mynumber}}</div>
+    <div ng-click="setCrime(v)" class="cell col-md-2 text-right">{{v['N. of acto'] | mynumber}}</div>
   </div>
   <div class="sep"></div>
 </div>

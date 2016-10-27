@@ -254,8 +254,16 @@ timeline .line, seiztimeline .line {
 .crime-box{
   overflow:hidden;
 }
+.crime-70{
+  width:70%;
+  float:left;
+}
+.crime-60{
+  width:60%;
+  float:left;
+}
 .crime-50{
-  width:49%;
+  width:50%;
   float:left;
 }
 .crime-40{
@@ -263,7 +271,7 @@ timeline .line, seiztimeline .line {
   float:left;
 }
 .crime-30{
-  width:29%;
+  width:30%;
   float:left;
 
 }

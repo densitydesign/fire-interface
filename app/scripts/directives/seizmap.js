@@ -26,7 +26,8 @@ angular.module('fireInterfaceApp')
 
 
         var colscale = d3.scaleQuantize()
-          .domain([1,d3.max(_.map(scope.cityByCount,"value"),function(d){return d.seized})])
+          //.domain([1,d3.max(_.map(scope.cityByCount,"value"),function(d){return d.seized})])
+          .domain([1,700]) //manually set to 500 to avoid outliers
           .range(["#FECA28", "#FFA914","#FD8F01","#FF5024","#FB2744"])
 
         var pi = Math.PI,
@@ -85,6 +86,7 @@ angular.module('fireInterfaceApp')
             aggregation = scope.seizByCity;
             getData();
             //colscale.domain([1,d3.max(_.map(scope.cityByCount,"value"),function(d){return d.victims})])
+            colscale.domain([1,400]) //fixed value to avoid outliers
             drawMap();
 
 
@@ -93,6 +95,7 @@ angular.module('fireInterfaceApp')
             aggregation = scope.seizByNUTS;
             getData();
             //colscale.domain([1,d3.max(_.map(scope.cityByCount,"value"),function(d){return d.victims})])
+            colscale.domain([1,700]) //fixed value to avoid outliers
             drawMap();
           }
 

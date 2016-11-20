@@ -92,6 +92,8 @@ map,seizmap{
   clear:both;
   padding-left:5%;
   padding-right:5%;
+  padding-top: 3px;
+  padding-bottom: 3px;
   transition: all 0.5s ease;
   cursor:pointer;
   position:relative;
@@ -139,8 +141,8 @@ map,seizmap{
 .table-head.row .cell{
   /*padding:0 5px 0 5px;*/
   /*border-bottom:1px solid #979899;*/
-  padding-top: 5px;
-    padding-bottom: 5px;
+  /*padding-top: 5px;
+  padding-bottom: 5px;*/
 }
 
 .cell.col-md-4 {

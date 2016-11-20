@@ -82,7 +82,7 @@ angular.module('fireInterfaceApp')
           if(transform.k > 1 << 13 && zoomlvl <= 1 << 13) {
             aggregation = scope.shootByCity;
             getData();
-            //colscale.domain([1,d3.max(_.map(scope.cityByCount,"value"),function(d){return d.victims})])
+            colscale.domain([1,d3.max(_.map(scope.cityByCount,"value"),function(d){return d.victims})])
             drawMap();
 
 
@@ -90,7 +90,7 @@ angular.module('fireInterfaceApp')
           else if (transform.k < 1 << 13 && zoomlvl >= 1 << 13) {
             aggregation = scope.shootByNUTS;
             getData();
-            //colscale.domain([1,d3.max(_.map(scope.cityByCount,"value"),function(d){return d.victims})])
+            colscale.domain([1,d3.max(_.map(scope.cityByCount,"value"),function(d){return d.victims})])
             drawMap();
           }
 

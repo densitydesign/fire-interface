@@ -63,7 +63,7 @@ angular.module('fireInterfaceApp')
 
                 var chart = d3.select(element[0]);
 
-                var margin = { top: 0, right: 0, bottom: 40, left: 40 };
+                var margin = { top: 10, right: 0, bottom: 40, left: 40 };
                 var chartWidth = element[0].clientWidth + margin.left;
                 var chartHeight = element[0].clientHeight - margin.bottom;
 

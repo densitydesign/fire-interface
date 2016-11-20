@@ -333,3 +333,13 @@ timeline .line, seiztimeline .line {
 .ng-modal-close{
   cursor:pointer;
 }
+
+.close-button {
+  cursor:pointer;
+  display: inline;
+  border-bottom: 2px solid transparent;
+}
+
+.close-button:hover {
+  border-bottom-color: #8d8d8d;
+}

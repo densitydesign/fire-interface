@@ -1,34 +1,40 @@
 <div ng-if="selected == 'All Countries' && !clicked " class="country-lst" ng-repeat="c in byCountry track by c.key">
-  <div  ng-click="collapsed = !collapsed" class="country-head">
-    <div class="country-ttl">{{c.key}}</div>
-    <div ng-class="{'fa-chevron-down':collapsed, 'fa-chevron-right':!collapsed}" class="country-collapse fa pull-right"></div>
-  </div>
-
-  <div class="table-head row" ng-if="collapsed" >
-    <div class="cell col-md-4">City</div>
-    <div class="cell col-md-4">Storage</div>
-    <div class="cell col-md-2 text-right" >Amount</div>
-    <div class="cell col-md-2 text-right">Actors</div>
-  </div>
-
-  <div ng-class="{'opaque':crime && crime.Crime_ID != v.Crime_ID}"  ng-if="collapsed" class="row" ng-repeat="v in c.value track by v.Crime_ID">
-    <span ng-click="toggleModal(v.Link)" class="crime-link fa fa-link"></span>
-    <div ng-click="setCrime(v)" class="cell col-md-4">{{v['Seizure_ci']}}</div>
-    <div ng-click="setCrime(v)" class="cell col-md-4">{{v['Storage']}}</div>
-    <div ng-click="setCrime(v)" class="cell col-md-2 text-right">{{v['N. of fire'] | mynumber}}</div>
-    <div ng-click="setCrime(v)" class="cell col-md-2 text-right">{{v['N. of acto'] | mynumber}}</div>
-  </div>
-  <div class="sep"></div>
+    <div ng-click="collapsed = !collapsed" class="country-head">
+        <div class="country-ttl">{{c.key}}</div>
+        <div ng-class="{'fa-chevron-down':collapsed, 'fa-chevron-right':!collapsed}" class="country-collapse fa pull-right"></div>
+    </div>
+    <div class="table-head row" ng-if="collapsed">
+        <div class="cell col-md-4">City</div>
+        <div class="cell col-md-4">Storage</div>
+        <div class="cell col-md-2 text-right">Amount</div>
+        <div class="cell col-md-2 text-right">Actors</div>
+    </div>
+    <div ng-class="{'opaque':crime && crime.Crime_ID != v.Crime_ID}" ng-if="collapsed" class="row" ng-repeat="v in c.value track by v.Crime_ID">
+        <span ng-click="toggleModal(v.Link)" class="crime-link fa fa-link"></span>
+        <div ng-click="setCrime(v)" class="cell col-md-4">{{v['Seizure_ci']}}</div>
+        <div ng-click="setCrime(v)" class="cell col-md-4">{{v['Storage']}}</div>
+        <div ng-click="setCrime(v)" class="cell col-md-2 text-right">{{v['N. of fire'] | mynumber}}</div>
+        <div ng-click="setCrime(v)" class="cell col-md-2 text-right">{{v['N. of acto'] | mynumber}}</div>
+    </div>
+    <div class="sep"></div>
 </div>
-
 <div ng-if="selected != 'All Countries' || (clicked && c.value.length)" class="country-lst" ng-repeat="c in byCountry track by c.key">
-  <div ng-click="collapsed = !collapsed" class="country-head"><div class="country-ttl">{{c.key}}</div><div ng-class="{'fa-chevron-down':collapsed, 'fa-chevron-right':!collapsed}" class="country-collapse fa pull-right"></div></div>
-  <div  ng-class="{'opaque':crime && crime.Crime_ID != v.Crime_ID}" ng-if="!collapsed" class="row" ng-repeat="v in c.value track by v.Crime_ID">
-    <span ng-click="toggleModal(v.Link)" class="crime-link fa fa-link"></span>
-    <div ng-click="setCrime(v)" class="cell col-md-4">{{v['Seizure_ci']}}</div>
-    <div ng-click="setCrime(v)" class="cell col-md-4">{{v['Storage']}}</div>
-    <div ng-click="setCrime(v)" class="cell col-md-2 text-right">{{v['N. of fire'] | mynumber}}</div>
-    <div ng-click="setCrime(v)" class="cell col-md-2 text-right">{{v['N. of acto'] | mynumber}}</div>
-  </div>
-  <div class="sep"></div>
+    <div ng-click="collapsed = !collapsed" class="country-head">
+        <div class="country-ttl">{{c.key}}</div>
+        <div ng-class="{'fa-chevron-down':collapsed, 'fa-chevron-right':!collapsed}" class="country-collapse fa pull-right"></div>
+    </div>
+    <div class="table-head row" ng-if="!collapsed">
+        <div class="cell col-md-4">City</div>
+        <div class="cell col-md-4">Storage</div>
+        <div class="cell col-md-2 text-right">Amount</div>
+        <div class="cell col-md-2 text-right">Actors</div>
+    </div>
+    <div ng-class="{'opaque':crime && crime.Crime_ID != v.Crime_ID}" ng-if="!collapsed" class="row" ng-repeat="v in c.value track by v.Crime_ID">
+        <span ng-click="toggleModal(v.Link)" class="crime-link fa fa-link"></span>
+        <div ng-click="setCrime(v)" class="cell col-md-4">{{v['Seizure_ci']}}</div>
+        <div ng-click="setCrime(v)" class="cell col-md-4">{{v['Storage']}}</div>
+        <div ng-click="setCrime(v)" class="cell col-md-2 text-right">{{v['N. of fire'] | mynumber}}</div>
+        <div ng-click="setCrime(v)" class="cell col-md-2 text-right">{{v['N. of acto'] | mynumber}}</div>
+    </div>
+    <div class="sep"></div>
 </div>

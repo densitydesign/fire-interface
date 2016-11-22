@@ -10,7 +10,7 @@
     <div ng-class="{'opaque':crime && crime.Crime_ID != v.Crime_ID}" ng-if="collapsed" class="row" ng-repeat="v in c.value track by v.Crime_ID">
         <span ng-click="toggleModal(v.Link)" class="crime-link fa fa-link"></span>
         <div ng-click="setCrime(v)" class="cell col-md-6">{{v['Event_city']}}</div>
-        <div ng-click="setCrime(v)" class="cell col-md-6">{{v['Event_type']}}</div>
+        <div ng-click="setCrime(v)" class="cell col-md-6">{{ v['Event_type'].replace(';',', ').replace('Shooting','Non-lethal shooting').replace('Homicide','Lethal shooting') }}</div>
     </div>
     <div class="sep"></div>
 </div>
@@ -26,7 +26,7 @@
     <div ng-class="{'opaque':crime && crime.Crime_ID != v.Crime_ID}" ng-if="!collapsed" class="row" ng-repeat="v in c.value track by v.Crime_ID">
         <span ng-click="toggleModal(v.Link)" class="crime-link fa fa-link"></span>
         <div ng-click="setCrime(v)" class="cell col-md-6">{{v['Event_city']}}</div>
-        <div ng-click="setCrime(v)" class="cell col-md-6">{{v['Event_type']}}</div>
+        <div ng-click="setCrime(v)" class="cell col-md-6">{{ v['Event_type'].replace(';',', ').replace('Shooting','Non-lethal shooting').replace('Homicide','Lethal shooting }}</div>
     </div>
     <div class="sep"></div>
 </div>

@@ -100,7 +100,7 @@ angular.module('fireInterfaceApp')
           .attr("x",d3.min([posl,posr]))
           .attr("y",0)
           .attr("width",Math.abs(posl-posr))
-          .style("fill","#BA5D4A")
+          .style("fill","#A4B3BC")
           .style("stroke","none")
           .style("opacity",0.2)
           .attr("height",height);

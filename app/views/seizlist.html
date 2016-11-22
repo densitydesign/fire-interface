@@ -5,7 +5,7 @@
     </div>
     <div class="table-head row" ng-if="collapsed">
         <div class="cell col-md-8">City</div>
-        <div class="cell col-md-4 text-right">N. of firearms</div>
+        <div class="cell col-md-4 text-right">Number of firearms</div>
     </div>
     <div ng-class="{'opaque':crime && crime.Crime_ID != v.Crime_ID}" ng-if="collapsed" class="row" ng-repeat="v in c.value track by v.Crime_ID">
         <span ng-click="toggleModal(v.Link)" class="crime-link fa fa-link"></span>

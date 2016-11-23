@@ -35,7 +35,7 @@ angular.module('fireInterfaceApp')
           height = element[0].clientHeight;
 
         // Define the div for the tooltip
-        var tooltip = d3.select("body").append("div")
+        var tooltip = d3.select("map").append("div")
           .attr("class", "tooltip")
           .style("opacity", 0);
 
@@ -200,12 +200,17 @@ angular.module('fireInterfaceApp')
           var newc = circles.enter().append("circle")
             .attr("class","city")
             .on("mouseover", function(d) {
+              //get circle position and radius
+              var xpos = parseFloat(d3.select(this).attr('cx'));
+              var ypos = parseFloat(d3.select(this).attr('cy'));
+              var radius = parseFloat(d3.select(this).attr('r'));
+              //console.log(xpos+" - "+(parseFloat(xpos)+20))
               tooltip.transition()
                 .duration(200)
                 .style("opacity", 1);
               tooltip.html("<span class='header'>Location:</span><br/><span class='content'>" + d.name+"</span><br/><span class='header'>amount of shootings:</span><br/><span class='content'>" + d.count+"</span><br/><span class='header'>Deaths:</span><br/><span class='content'>" + d.victims +"</span>")
-                .style("left", (d3.event.pageX+10) + "px")
-                .style("top", (d3.event.pageY-15) + "px");
+                .style("left", (xpos+radius+5) + "px")
+                .style("top", (ypos-15) + "px");
             })
             .on("mouseout", function(d) {
               tooltip.transition()

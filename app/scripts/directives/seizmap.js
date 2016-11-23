@@ -38,7 +38,7 @@ angular.module('fireInterfaceApp')
           height = element[0].clientHeight;
 
         // Define the div for the tooltip
-          var tooltip = d3.select("body").append("div")
+          var tooltip = d3.select("seizmap").append("div")
             .attr("class", "tooltip")
             .style("opacity", 0);
 
@@ -223,13 +223,16 @@ angular.module('fireInterfaceApp')
               return colscale(d.seized) })
             .style("opacity", 0.8)
             .on("mouseover", function(d) {
-              console.log(d);
+              //get circle radius
+              var radius = parseFloat(d3.select(this).attr('r'));
+              console.log(d)
+
               tooltip.transition()
                 .duration(200)
                 .style("opacity", 1);
               tooltip.html("<span class='header'>Location:</span><br/><span class='content'>" + d.name+"</span><br/><span class='header'>Total seizures:</span><br/><span class='content'>" + d.count+"</span><br/><span class='header'>Seized firearms:</span><br/><span class='content'>" + d.seized +"</span>")
-                .style("left", (d3.event.pageX+10) + "px")
-                .style("top", (d3.event.pageY-15) + "px");
+                .style("left", (d.posx+radius+5) + "px")
+                .style("top", (d.posy-15) + "px");
             })
             .on("mouseout", function(d) {
               tooltip.transition()
@@ -244,6 +247,8 @@ angular.module('fireInterfaceApp')
 
           svg.selectAll(".city")
             .attr("transform", function(d) {
+              d.posx = projection([d.lon, d.lat])[0];
+              d.posy = projection([d.lon, d.lat])[1];
               return "translate(" + projection([d.lon, d.lat])[0] + "," + projection([d.lon, d.lat])[1] + ")" })
             //.attr("cx",function(d){return projection([d.lon,d.lat])[0]})
             //.attr("cy",function(d){return projection([d.lon,d.lat])[1]})

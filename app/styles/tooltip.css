@@ -12,6 +12,7 @@ div.tooltip .content {
 }
 
 /* Creates a small triangle extender for the tooltip */
+
 .tooltip:before {
     content:"\A";
     border-style: solid;

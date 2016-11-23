@@ -25,7 +25,8 @@ angular.module('fireInterfaceApp')
 
         var colscale = d3.scaleQuantize()
           .domain([1,d3.max(_.map(scope.cityByCount,"value"),function(d){return d.victims})])
-          .range(["#FECA28", "#FFA914","#FD8F01","#FF5024","#FB2744"])
+          .range(['#fcd66d','#f0ab5a','#e17f47','#d05236','#bd0026']);
+          //.range(["#FECA28", "#FFA914","#FD8F01","#FF5024","#FB2744"])
 
         var pi = Math.PI,
           tau = 2 * pi;
@@ -195,7 +196,7 @@ angular.module('fireInterfaceApp')
             .attr("cy",function(d){return projection([d.lon,d.lat])[1]})
             .attr("r",function(d){return xscale(d.count)})
             .style("fill",function(d){return colscale(d.victims)})
-            .style("opacity",0.7);
+            .style("opacity",0.8);
 
           circles.exit().remove();
         }

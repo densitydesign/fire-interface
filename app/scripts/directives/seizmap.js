@@ -28,7 +28,7 @@ angular.module('fireInterfaceApp')
         var colscale = d3.scaleQuantize()
           //.domain([1,d3.max(_.map(scope.cityByCount,"value"),function(d){return d.seized})])
           .domain([1,700]) //manually set to 500 to avoid outliers
-          .range(["#FECA28", "#FFA914","#FD8F01","#FF5024","#FB2744"])
+          .range(['#fcd66d','#f0ab5a','#e17f47','#d05236','#bd0026']);
 
         var pi = Math.PI,
           tau = 2 * pi;
@@ -192,24 +192,12 @@ angular.module('fireInterfaceApp')
             .attr("cy",0)
             .attr("r",function(d){return xscale(d.count)})
             .style("fill",function(d){return colscale(d.seized)})
-            .style("opacity",0.2)
+            .style("opacity",0.8)
             .on("click", function(d){
               console.log(d);
               scope.$emit("click", d["Country"], d.ids);
 
             });
-
-
-          newc.append("circle")
-            .attr("cx",0)
-            .attr("cy",0)
-            .attr("r",function(d){return xscale(d.known)})
-            .style("fill",function(d){return colscale(d.seized)})
-            .style("opacity",0.9)
-            .on("click", function(d){
-              scope.$emit("click", d["Country"], d.ids);
-            });
-
 
 
           svg.selectAll(".city")

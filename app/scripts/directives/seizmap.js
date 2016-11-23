@@ -127,8 +127,10 @@ angular.module('fireInterfaceApp')
 
 
           svg.selectAll(".city")
-            .attr("transform", function(d) {
-              return "translate(" + projection([d.lon, d.lat])[0] + "," + projection([d.lon, d.lat])[1] + ")" })
+            .attr("cx",function(d){return projection([d.lon,d.lat])[0]})
+            .attr("cy",function(d){return projection([d.lon,d.lat])[1]})
+            //.attr("transform", function(d) {
+            //  return "translate(" + projection([d.lon, d.lat])[0] + "," + projection([d.lon, d.lat])[1] + ")" })
 
 
           image.exit().remove();

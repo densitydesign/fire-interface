@@ -34,6 +34,11 @@ angular.module('fireInterfaceApp')
         var width = element[0].clientWidth,
           height = element[0].clientHeight;
 
+        // Define the div for the tooltip
+        var tooltip = d3.select("body").append("div")
+          .attr("class", "tooltip")
+          .style("opacity", 0);
+
 // Initialize the projection to fit the world in a 1×1 square centered at the origin.
         var projection = d3.geoMercator()
           .scale(1 / tau)
@@ -123,6 +128,10 @@ angular.module('fireInterfaceApp')
 
           image.exit().remove();
 
+          //close tooltip
+          tooltip.transition()
+                .duration(500)
+                .style("opacity", 0);
 
 
           //https://api.mapbox.com/styles/v1/fenicento/ciskc3xy200dr2xp8s7wieg8d/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZmVuaWNlbnRvIiwiYSI6ImNpbmhsenNqeDAwMmd3ZGx5MXVmcjNrdTAifQ.D1nRFjJRXUR7PMk5eDJzHQ
@@ -155,6 +164,12 @@ angular.module('fireInterfaceApp')
 
             function(a, d) {
               a.count++;
+              //name of the dot
+              if(aggregation == scope.shootByCity) {
+                a.name = d["Event_city"];
+              } else if(aggregation == scope.shootByNUTS) {
+                a.name = d["NUTS_ID"];
+              }
               var inj = parseInt(d["N. of inju"])
               var vic = parseInt(d["N. of vict"])
               a.ids.push(d.Crime_ID)
@@ -172,7 +187,7 @@ angular.module('fireInterfaceApp')
               return a;
             },
             function() {
-              return  {count:0, victims:0, ids:[]}; }
+              return  {name:'', count:0, victims:0, ids:[]}; }
 
           ).all();
         }
@@ -184,6 +199,19 @@ angular.module('fireInterfaceApp')
 
           var newc = circles.enter().append("circle")
             .attr("class","city")
+            .on("mouseover", function(d) {
+              tooltip.transition()
+                .duration(200)
+                .style("opacity", 1);
+              tooltip.html("<span class='header'>Location:</span><br/><span class='content'>" + d.name+"</span><br/><span class='header'>amount of shootings:</span><br/><span class='content'>" + d.count+"</span><br/><span class='header'>Deaths:</span><br/><span class='content'>" + d.victims +"</span>")
+                .style("left", (d3.event.pageX+10) + "px")
+                .style("top", (d3.event.pageY-15) + "px");
+            })
+            .on("mouseout", function(d) {
+              tooltip.transition()
+                .duration(500)
+                .style("opacity", 0);
+            })
             .on("click", function(d){
               
                 scope.$emit("click", d["Country"], d.ids);

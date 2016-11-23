@@ -7,7 +7,7 @@
  * # seizmap
  */
 angular.module('fireInterfaceApp')
-  .directive('seizmap', function () {
+  .directive('seizmap', function() {
     return {
       template: '<svg id="seizmap"></svg>',
       restrict: 'E',
@@ -22,13 +22,14 @@ angular.module('fireInterfaceApp')
 
         var xscale = d3.scaleSqrt()
           .range([2, 15])
-          .domain([0,d3.max(_.map(scope.cityByCount,"value"),function(d){return d.count})])
+          .domain([0, d3.max(_.map(scope.cityByCount, "value"), function(d) {
+            return d.count })])
 
 
         var colscale = d3.scaleQuantize()
           //.domain([1,d3.max(_.map(scope.cityByCount,"value"),function(d){return d.seized})])
-          .domain([1,700]) //manually set to 500 to avoid outliers
-          .range(['#fcd66d','#f0ab5a','#e17f47','#d05236','#bd0026']);
+          .domain([1, 700]) //manually set to 500 to avoid outliers
+          .range(['#fcd66d', '#f0ab5a', '#e17f47', '#d05236', '#bd0026']);
 
         var pi = Math.PI,
           tau = 2 * pi;
@@ -36,7 +37,12 @@ angular.module('fireInterfaceApp')
         var width = element[0].clientWidth,
           height = element[0].clientHeight;
 
-// Initialize the projection to fit the world in a 1×1 square centered at the origin.
+        // Define the div for the tooltip
+          var tooltip = d3.select("body").append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+
+        // Initialize the projection to fit the world in a 1×1 square centered at the origin.
         var projection = d3.geoMercator()
           .scale(1 / tau)
           .translate([0, 0]);
@@ -56,7 +62,7 @@ angular.module('fireInterfaceApp')
           .attr("height", height);
 
         var raster = svg.append("g")
-          .on("click",function(){
+          .on("click", function() {
             scope.$emit("deselect");
           })
 
@@ -64,7 +70,7 @@ angular.module('fireInterfaceApp')
 
 
         // Compute the projected initial center.
-        var center = projection([18.933333,48.733333]);
+        var center = projection([18.933333, 48.733333]);
 
         // Apply a zoom transform equivalent to projection.{scale,translate,center}.
         svg
@@ -82,20 +88,19 @@ angular.module('fireInterfaceApp')
         function zoomed() {
           var transform = d3.event.transform;
 
-          if(transform.k > 1 << 13 && zoomlvl <= 1 << 13) {
+          if (transform.k > 1 << 13 && zoomlvl <= 1 << 13) {
             aggregation = scope.seizByCity;
             getData();
             //colscale.domain([1,d3.max(_.map(scope.cityByCount,"value"),function(d){return d.victims})])
-            colscale.domain([1,400]) //fixed value to avoid outliers
+            colscale.domain([1, 400]) //fixed value to avoid outliers
             drawMap();
 
 
-          }
-          else if (transform.k < 1 << 13 && zoomlvl >= 1 << 13) {
+          } else if (transform.k < 1 << 13 && zoomlvl >= 1 << 13) {
             aggregation = scope.seizByNUTS;
             getData();
             //colscale.domain([1,d3.max(_.map(scope.cityByCount,"value"),function(d){return d.victims})])
-            colscale.domain([1,700]) //fixed value to avoid outliers
+            colscale.domain([1, 700]) //fixed value to avoid outliers
             drawMap();
           }
 
@@ -116,37 +121,47 @@ angular.module('fireInterfaceApp')
           var image = raster
             .attr("transform", stringify(tiles.scale, tiles.translate))
             .selectAll("image")
-            .data(tiles, function(d) { return d; })
+            .data(tiles, function(d) {
+              return d; })
 
 
 
           svg.selectAll(".city")
-            .attr("transform",function(d){return"translate("+projection([d.lon,d.lat])[0]+","+projection([d.lon,d.lat])[1]+")"})
+            .attr("transform", function(d) {
+              return "translate(" + projection([d.lon, d.lat])[0] + "," + projection([d.lon, d.lat])[1] + ")" })
 
 
           image.exit().remove();
 
+          //close tooltip
+          tooltip.transition()
+                .duration(500)
+                .style("opacity", 0);
 
 
           //https://api.mapbox.com/styles/v1/fenicento/ciskc3xy200dr2xp8s7wieg8d/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZmVuaWNlbnRvIiwiYSI6ImNpbmhsenNqeDAwMmd3ZGx5MXVmcjNrdTAifQ.D1nRFjJRXUR7PMk5eDJzHQ
 
           image.enter().append("image")
-            .attr("xlink:href", function(d) { return "https://api.mapbox.com/styles/v1/fenicento/ciskc3xy200dr2xp8s7wieg8d/tiles/256/" + d[2] + "/" + d[0] + "/" + d[1] + "?access_token=pk.eyJ1IjoiZmVuaWNlbnRvIiwiYSI6ImNpbmhsenNqeDAwMmd3ZGx5MXVmcjNrdTAifQ.D1nRFjJRXUR7PMk5eDJzHQ"; })
-            .attr("x", function(d) { return d[0] * 256; })
-            .attr("y", function(d) { return d[1] * 256; })
+            .attr("xlink:href", function(d) {
+              return "https://api.mapbox.com/styles/v1/fenicento/ciskc3xy200dr2xp8s7wieg8d/tiles/256/" + d[2] + "/" + d[0] + "/" + d[1] + "?access_token=pk.eyJ1IjoiZmVuaWNlbnRvIiwiYSI6ImNpbmhsenNqeDAwMmd3ZGx5MXVmcjNrdTAifQ.D1nRFjJRXUR7PMk5eDJzHQ"; })
+            .attr("x", function(d) {
+              return d[0] * 256; })
+            .attr("y", function(d) {
+              return d[1] * 256; })
             .attr("width", 257)
             .attr("height", 257);
 
         }
 
         function stringify(scale, translate) {
-          var k = scale / 256, r = scale % 1 ? Number : Math.round;
+          var k = scale / 256,
+            r = scale % 1 ? Number : Math.round;
           return "translate(" + r(translate[0] * scale) + "," + r(translate[1] * scale) + ") scale(" + k + ")";
         }
 
 
 
-        scope.$on("refresh",function(){
+        scope.$on("refresh", function() {
           getData();
           drawMap();
         })
@@ -158,50 +173,78 @@ angular.module('fireInterfaceApp')
 
             function(a, d) {
               a.count++;
-              a.ids.push(d.Crime_ID)
-              if (!a.lat) {a.lat = parseFloat(d['Y']); a.lon = parseFloat(d['X'])}
-              if(!isNaN(parseInt(d["N. of fire"]))) {a.known++; a.seized+=parseInt(d["N. of fire"])}
+              //name of the dot
+              if(aggregation == scope.seizByCity) {
+                a.name = d["Seizure_ci"];
+              } else if(aggregation == scope.seizByNUTS) {
+                a.name = d["NUTS_ID"];
+              }
+              a.ids.push(d.Crime_ID);
+              if (!a.lat) { a.lat = parseFloat(d['Y']);
+                a.lon = parseFloat(d['X']) }
+              if (!isNaN(parseInt(d["N. of fire"]))) { a.known++;
+                a.seized += parseInt(d["N. of fire"]) }
               return a;
             },
             function(a, d) {
               a.count--;
-              var pos = _.findIndex(a,function(e){return e.Crime_ID == d.Crime_ID})
-              a.ids.slice(pos,1);
-              if(!isNaN(parseInt(d["N. of fire"]))) {a.known--; a.seized-=parseInt(d["N. of fire"])}
+              var pos = _.findIndex(a, function(e) {
+                return e.Crime_ID == d.Crime_ID })
+              a.ids.slice(pos, 1);
+              if (!isNaN(parseInt(d["N. of fire"]))) { a.known--;
+                a.seized -= parseInt(d["N. of fire"]) }
 
               return a;
             },
             function() {
-              return  {count:0, known:0, seized:0, ids:[]}; }
+              return { count: 0, known: 0, seized: 0, ids: [] };
+            }
 
           ).all();
         }
 
         function drawMap() {
 
-          var data = _.map(scope.cityByCount,"value").filter(function(d){return d.count > 0});
+          var data = _.map(scope.cityByCount, "value").filter(function(d) {
+            return d.count > 0 });
 
-          var circles = svg.selectAll(".city").data(data,function(d){return d.key})
+          var circles = svg.selectAll(".city").data(data, function(d) {
+            return d.key })
 
           var newc = circles.enter().append("g")
-            .attr("class","city")
-
+            .attr("class", "city")
 
           newc.append("circle")
-            .attr("cx",0)
-            .attr("cy",0)
-            .attr("r",function(d){return xscale(d.count)})
-            .style("fill",function(d){return colscale(d.seized)})
-            .style("opacity",0.8)
-            .on("click", function(d){
+            .attr("cx", 0)
+            .attr("cy", 0)
+            .attr("r", function(d) {
+              return xscale(d.count) })
+            .style("fill", function(d) {
+              return colscale(d.seized) })
+            .style("opacity", 0.8)
+            .on("mouseover", function(d) {
+              console.log(d);
+              tooltip.transition()
+                .duration(200)
+                .style("opacity", 1);
+              tooltip.html("<span class='header'>Location:</span><br/><span class='content'>" + d.name+"</span><br/><span class='header'>Total seizures:</span><br/><span class='content'>" + d.count+"</span><br/><span class='header'>Seized firearms:</span><br/><span class='content'>" + d.seized +"</span>")
+                .style("left", (d3.event.pageX+10) + "px")
+                .style("top", (d3.event.pageY-15) + "px");
+            })
+            .on("mouseout", function(d) {
+              tooltip.transition()
+                .duration(500)
+                .style("opacity", 0);
+            })
+            .on("click", function(d) {
               console.log(d);
               scope.$emit("click", d["Country"], d.ids);
-
             });
 
 
           svg.selectAll(".city")
-            .attr("transform",function(d){return"translate("+projection([d.lon,d.lat])[0]+","+projection([d.lon,d.lat])[1]+")"})
+            .attr("transform", function(d) {
+              return "translate(" + projection([d.lon, d.lat])[0] + "," + projection([d.lon, d.lat])[1] + ")" })
             //.attr("cx",function(d){return projection([d.lon,d.lat])[0]})
             //.attr("cy",function(d){return projection([d.lon,d.lat])[1]})
             //.attr("r",function(d){return xscale(d.count)})

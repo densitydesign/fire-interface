@@ -1,0 +1,22 @@
+div.tooltip {
+    position: absolute;
+    padding: 10px 20px;
+    background: #ECEFF1;
+    border-radius: 3px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    pointer-events: none;
+}
+
+div.tooltip .content {
+    font-size: 24px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.tooltip:before {
+    content:"\A";
+    border-style: solid;
+    border-width: 5px 5px 5px 0;
+    border-color: transparent #ECEFF1 transparent transparent;
+    position: absolute;
+    left: -5px;
+}

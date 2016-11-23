@@ -513,33 +513,28 @@ angular.module('fireInterfaceApp')
 
         function drawMap() {
 
-          var data = _.map(scope.cityByCount, "value").filter(function(d) {
-            return d.count > 0 });
+          var data = _.map(scope.cityByCount, "value").filter(function(d) {return d.count > 0 });
 
-          var circles = svg.selectAll(".city").data(data, function(d) {
-            return d.key })
+          var circles = svg.selectAll(".city").data(data, function(d) {return d.key })
 
-          var newc = circles.enter().append("g")
-            .attr("class", "city")
+          //var newc = circles.enter().append("g")
+          //  .attr("class", "city")
 
-          newc.append("circle")
-            .attr("cx", 0)
-            .attr("cy", 0)
-            .attr("r", function(d) {
-              return xscale(d.count) })
-            .style("fill", function(d) {
-              return colscale(d.seized) })
-            .style("opacity", 0.8)
+          var newc = circles.enter().append("circle")
+            .attr("class","city")
             .on("mouseover", function(d) {
               //get circle radius
+              //get circle position and radius
+              var xpos = parseFloat(d3.select(this).attr('cx'));
+              var ypos = parseFloat(d3.select(this).attr('cy'));
               var radius = parseFloat(d3.select(this).attr('r'));
 
               tooltip.transition()
                 .duration(200)
                 .style("opacity", 1);
               tooltip.html("<span class='header'>Location:</span><br/><span class='content'>" + d.name+"</span><br/><span class='header'>Total seizures:</span><br/><span class='content'>" + d.count+"</span><br/><span class='header'>Seized firearms:</span><br/><span class='content'>" + d.seized +"</span>")
-                .style("left", (d.posx+radius+5) + "px")
-                .style("top", (d.posy-15) + "px");
+                .style("left", (xpos+radius+5) + "px")
+                .style("top", (ypos-15) + "px");
             })
             .on("mouseout", function(d) {
               tooltip.transition()
@@ -553,15 +548,15 @@ angular.module('fireInterfaceApp')
 
 
           svg.selectAll(".city")
-            .attr("transform", function(d) {
-              d.posx = projection([d.lon, d.lat])[0];
-              d.posy = projection([d.lon, d.lat])[1];
-              return "translate(" + projection([d.lon, d.lat])[0] + "," + projection([d.lon, d.lat])[1] + ")" })
-            //.attr("cx",function(d){return projection([d.lon,d.lat])[0]})
-            //.attr("cy",function(d){return projection([d.lon,d.lat])[1]})
-            //.attr("r",function(d){return xscale(d.count)})
-            //.style("fill",function(d){return colscale(d.seized)})
-            //.style("opacity",0.7);
+            //.attr("transform", function(d) {
+            //  d.posx = projection([d.lon, d.lat])[0];
+            //  d.posy = projection([d.lon, d.lat])[1];
+            //  return "translate(" + projection([d.lon, d.lat])[0] + "," + projection([d.lon, d.lat])[1] + ")" })
+            .attr("cx",function(d){return projection([d.lon,d.lat])[0]})
+            .attr("cy",function(d){return projection([d.lon,d.lat])[1]})
+            .attr("r",function(d){return xscale(d.count)})
+            .style("fill",function(d){return colscale(d.seized)})
+            .style("opacity",0.8);
 
           circles.exit().remove();
         }

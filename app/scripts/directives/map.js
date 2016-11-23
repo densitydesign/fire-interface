@@ -22,7 +22,6 @@ angular.module('fireInterfaceApp')
           .range([2, 15])
           .domain([0,d3.max(_.map(scope.cityByCount,"value"),function(d){return d.count})])
 
-
         var colscale = d3.scaleQuantize()
           .domain([1,d3.max(_.map(scope.cityByCount,"value"),function(d){return d.victims})])
           .range(['#fcd66d','#f0ab5a','#e17f47','#d05236','#bd0026']);
@@ -88,6 +87,7 @@ angular.module('fireInterfaceApp')
           if(transform.k > 1 << 13 && zoomlvl <= 1 << 13) {
             aggregation = scope.shootByCity;
             getData();
+
             colscale.domain([1,d3.max(_.map(scope.cityByCount,"value"),function(d){return d.victims})])
             drawMap();
 
@@ -542,6 +542,23 @@ angular.module('fireInterfaceApp')
             .style("opacity",0.8);
 
           circles.exit().remove();
+
+          scope.legend = {
+           'id':'legend-shootings',
+           'size-title':'Number of shootings',
+           'dots-color': colscale.range()[0],
+           'size-scale-1': xscale(1)*2+'px',
+           'size-scale-2': ( xscale( xscale.domain()[1] ) ) +'px',
+           'size-scale-3': xscale(xscale.domain()[1])*2+'px',
+           'legend-size-n-min': '1',
+           'legend-size-n-mid': (Math.round(xscale.domain()[1]/2)),
+           'legend-size-n-max': xscale.domain()[1],
+           'color-title':'Number of deaths',
+           'color-gradient': 'linear-gradient(to right, '+colscale.range()[0]+', '+colscale.range()[4]+')',
+           'legend-color-n-min': colscale.domain()[0],
+           'legend-color-n-max': colscale.domain()[1]
+          }
+
         }
       }
     };

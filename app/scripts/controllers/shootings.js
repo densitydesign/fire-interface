@@ -10,6 +10,20 @@
 angular.module('fireInterfaceApp')
   .controller('ShootingsCtrl', function ($scope, shootings) {
 
+    $scope.legend = {
+      'size-title':'Number of [shot/seiz]',
+      'size-scale-1': '10px',
+      'size-scale-2': '40px',
+      'size-scale-3': '20px',
+      'legend-size-n-min': 'min',
+      'legend-size-n-mid': 'mid',
+      'legend-size-n-max': 'max',
+      'color-title':'Number of [deaths/guns]',
+      'color-gradient': 'linear-gradient(to right, yellow, red)',
+      'legend-color-n-min': 'min',
+      'legend-color-n-max': 'max'
+    }
+
     $scope.shootings = d3.tsvParse(shootings);
     $scope.links = [];
 

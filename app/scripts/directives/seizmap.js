@@ -561,6 +561,22 @@ angular.module('fireInterfaceApp')
             .style("opacity",0.8);
 
           circles.exit().remove();
+
+          scope.legend = {
+            'id':'legend-seizures',
+           'size-title':'Number of shootings',
+           'dots-color': colscale.range()[0],
+           'size-scale-1': xscale(1)*2+'px',
+           'size-scale-2': ( xscale( xscale.domain()[1] ) ) +'px',
+           'size-scale-3': xscale(xscale.domain()[1])*2+'px',
+           'legend-size-n-min': '1',
+           'legend-size-n-mid': (Math.round(xscale.domain()[1]/2)),
+           'legend-size-n-max': xscale.domain()[1],
+           'color-title':'Number of deaths',
+           'color-gradient': 'linear-gradient(to right, '+colscale.range()[0]+', '+colscale.range()[4]+')',
+           'legend-color-n-min': colscale.domain()[0],
+           'legend-color-n-max': colscale.domain()[1]
+          }
         }
       }
     };

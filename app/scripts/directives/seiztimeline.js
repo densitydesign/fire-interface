@@ -9,7 +9,7 @@
 angular.module('fireInterfaceApp')
     .directive('seiztimeline', function() {
         return {
-            template: '<svg></svg>',
+            template: '<svg></svg><legend id="legend-seizures"></legend>',
             restrict: 'E',
             link: function postLink(scope, element, attrs) {
 
@@ -64,8 +64,10 @@ angular.module('fireInterfaceApp')
                 var chart = d3.select(element[0]);
 
                 var margin = { top: 10, right: 10, bottom: 40, left: 40 };
-                var chartWidth = element[0].clientWidth + margin.left;
+                var chartWidth = element[0].clientWidth*0.75 + margin.left;
                 var chartHeight = element[0].clientHeight - margin.bottom;
+
+                scope.chartHeight = chartHeight;
 
                 var width = chartWidth - margin.left*2 - margin.right*2;
                 var height = chartHeight - margin.top - margin.bottom;

@@ -79,7 +79,7 @@ map,seizmap{
 }
 .timelinectrl{
   width:calc(100% - 30px);
-  height:20vh;
+  height:22vh;
   position:absolute;
   bottom:0;
   background:#ECEFF1;
@@ -97,6 +97,15 @@ legend {
   padding: 0 15px;
 }
 
+legend h2 {
+  margin-bottom: 0px;
+}
+
+legend h6 {
+  margin: 0px;
+  margin-top: 10px;
+}
+
 #legend-color {
 
 }
@@ -112,10 +121,6 @@ legend {
     font-size: 12px;
 }
 
-/*#legend-color h6:after {
-  content: " \2192";
-}*/
-
 .size-scale {
   display: flex;
   justify-content: space-between;
@@ -130,8 +135,6 @@ legend {
   border-radius: 100%;
   text-align: left;
 }
-
-
 
 .country-lst .row{
   clear:both;

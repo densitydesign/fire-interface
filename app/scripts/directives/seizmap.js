@@ -564,7 +564,7 @@ angular.module('fireInterfaceApp')
 
           scope.legend = {
             'id':'legend-seizures',
-           'size-title':'Number of shootings',
+           'size-title':'Number of seizures',
            'dots-color': colscale.range()[0],
            'size-scale-1': xscale(1)*2+'px',
            'size-scale-2': ( xscale( xscale.domain()[1] ) ) +'px',
@@ -572,7 +572,7 @@ angular.module('fireInterfaceApp')
            'legend-size-n-min': '1',
            'legend-size-n-mid': (Math.round(xscale.domain()[1]/2)),
            'legend-size-n-max': xscale.domain()[1],
-           'color-title':'Number of deaths',
+           'color-title':'Number of seized firearms',
            'color-gradient': 'linear-gradient(to right, '+colscale.range()[0]+', '+colscale.range()[4]+')',
            'legend-color-n-min': colscale.domain()[0],
            'legend-color-n-max': colscale.domain()[1]

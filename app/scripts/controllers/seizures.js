@@ -54,6 +54,8 @@ angular.module('fireInterfaceApp')
 
     $scope.$on("click",function(e,country,ids) {
 
+      console.log(country);
+      
       $scope.clicked = true;
       $scope.seizById.filter(function(e){
         return ids.indexOf(e) > -1;
